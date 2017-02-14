@@ -52,7 +52,8 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var app = new _vue2.default({
+	var app;
+	app = new _vue2.default({
 	    el: '#app',
 	    data: {
 	        newTodo: '',
@@ -73,10 +74,11 @@
 	    },
 	    methods: {
 	        addTodo: function addTodo() {
-	            if (this.newTodo !== '') {
+	            if (this.newTodo && /\S+/g.test(this.newTodo)) {
 	                this.todoList.push({
 	                    title: this.newTodo,
-	                    createdAt: new Date(),
+	                    createdAt: new Date().getDay() + "/" + new Date().getMonth() + " " + new Date().getHours() + ":" + new Date().getMinutes(),
+
 	                    done: false // ����һ�� done ����
 	                });
 	                this.newTodo = '';
